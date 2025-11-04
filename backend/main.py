@@ -82,7 +82,7 @@ app.add_middleware(
         "http://127.0.0.1:3000",
         # Production - Vercel deployments
         "https://*.vercel.app",  # All Vercel preview deployments
-        "https://vercel.app",
+        "https://truthfi.vercel.app",
         # Add your specific Vercel URL here when you get it
         # Example: "https://truthfi.vercel.app",
     ],
