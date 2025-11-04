@@ -80,7 +80,7 @@ app.add_middleware(
         "http://localhost:3001",
         "http://127.0.0.1:3000",
         "https://*.vercel.app",  # Add this for Vercel
-        "https://truthfi.vercel.app/"
+        "https://truthfi.vercel.app"
     ],
     allow_credentials=False,
     allow_methods=["*"],
