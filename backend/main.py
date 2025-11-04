@@ -72,21 +72,17 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-# CORS Configuration - Production settings
+# CORS Configuration - Allow frontend access
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        # Local development
         "http://localhost:3000",
         "http://localhost:3001",
         "http://127.0.0.1:3000",
-        # Production - Vercel deployments
-        "https://*.vercel.app",  # All Vercel preview deployments
-        "https://truthfi.vercel.app",
-        # Add your specific Vercel URL here when you get it
-        # Example: "https://truthfi.vercel.app",
+        "https://*.vercel.app",  # Add this for Vercel
+        "*"  # Temporary - we'll restrict after deployment
     ],
-    allow_credentials=False,
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -524,12 +520,10 @@ async def internal_error_handler(request, exc):
 # ==========================================
 
 if __name__ == "__main__":
-    import os
-    port = int(os.getenv("PORT", 8080))
     uvicorn.run(
         "main:app",
         host="0.0.0.0",
-        port=port,
+        port=8000,
         reload=True,
         log_level="info"
     )
