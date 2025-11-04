@@ -72,20 +72,25 @@ app = FastAPI(
     lifespan=lifespan
 )
 
-# CORS Configuration - Allow frontend access
-# CORS Configuration - Allow frontend access
-origins = [
-    "https://truthfi.vercel.app",  # your production frontend
-    "http://localhost:3000",       # for local testing
-]
-
+# CORS Configuration - Production settings
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
+    allow_origins=[
+        # Local development
+        "http://localhost:3000",
+        "http://localhost:3001",
+        "http://127.0.0.1:3000",
+        # Production - Vercel deployments
+        "https://*.vercel.app",  # All Vercel preview deployments
+        "https://truthfi.vercel.app/",
+        # Add your specific Vercel URL here when you get it
+        # Example: "https://truthfi.vercel.app",
+    ],
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 # ==========================================
 # REQUEST/RESPONSE MODELS
 # ==========================================
