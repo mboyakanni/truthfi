@@ -130,6 +130,7 @@ export default function TruthFiDashboard() {
       setResult(data);
       saveRecentSearch(tokenSymbol.toUpperCase());
     } catch (err: any) {
+      console.error("❌ API call failed:", API_URL, err);
       setError(
         err.message ||
           "Failed to analyze token. Make sure the backend is running."
