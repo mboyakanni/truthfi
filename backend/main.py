@@ -86,6 +86,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+from starlette.requests import Request
+
+@app.middleware("http")
+async def cors_debug_middleware(request: Request, call_next):
+    origin = request.headers.get("origin")
+    method = request.method
+    path = request.url.path
+    print(f"🌍 Request: {method} {path} | Origin: {origin}")
+    response = await call_next(request)
+    return response
 # ==========================================
 # REQUEST/RESPONSE MODELS
 # ==========================================
