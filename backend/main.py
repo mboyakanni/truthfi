@@ -76,11 +76,9 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:3000",
-        "http://localhost:3001",
-        "http://127.0.0.1:3000",
-        "https://*.vercel.app",  # Add this for Vercel
-        "*"  # Temporary - we'll restrict after deployment
+        "http://localhost:3000",  # Keep for local development
+        "https://truthfi.vercel.app",  # Your actual Vercel URL
+        "https://*.vercel.app",  # If you have preview deployments
     ],
     allow_credentials=True,
     allow_methods=["*"],
